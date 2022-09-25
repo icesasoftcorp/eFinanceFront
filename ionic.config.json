@@ -1,0 +1,7 @@
+{
+  "name": "eFinanceDemoFrontEnd",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}

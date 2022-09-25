@@ -1,0 +1,6 @@
+{
+	"appId": "io.ionic.starter",
+	"appName": "eFinanceDemoFrontEnd",
+	"webDir": "www",
+	"bundledWebRuntime": false
+}
