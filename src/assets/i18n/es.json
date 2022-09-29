@@ -1,0 +1,11 @@
+{
+  "LOGIN" : {
+    "email": "E-mail",
+    "email_validation": "El e-mail ingresado no es válido",
+    "password": "Contraseña",
+    "empty_password": "Debe ingresar una contraseña",
+    "login": "Ingresar",
+    "password_recover": "Recuperar contraseña",
+    "register": "Registro"
+  }
+}

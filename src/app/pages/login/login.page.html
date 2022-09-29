@@ -1,0 +1,23 @@
+<div id="login-container">
+  <div>
+    <ion-card>
+      <ion-card-content>
+        <form (submit)="onLogin(loginForm)" #loginForm="ngForm">
+          <ion-item>
+            <ion-label position="stacked" color="medium">{{ 'LOGIN.email' | translate }}</ion-label>
+            <ion-input name="email" type="email" ngModel #emailInput="ngModel" required email></ion-input>
+          </ion-item>
+          <ion-note color="danger" *ngIf="loginForm.submitted && emailInput.invalid">{{ 'LOGIN.email_validation' | translate }}</ion-note>
+
+          <ion-item class="ion-padding-bottom">
+            <ion-label position="stacked" color="medium">{{ 'LOGIN.password' | translate }}</ion-label>
+            <ion-input type="password" name="password" ngModel #passwordInput="ngModel" required></ion-input>
+          </ion-item>
+          <ion-note color="danger" *ngIf="loginForm.submitted && passwordInput.invalid">{{ 'LOGIN.empty_password' | translate }}</ion-note>
+
+          <ion-button expand="block" type="submit">{{ 'LOGIN.login' | translate }}</ion-button>
+        </form>
+      </ion-card-content>
+    </ion-card>
+  </div>
+</div>

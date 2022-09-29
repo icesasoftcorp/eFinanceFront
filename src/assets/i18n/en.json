@@ -1,0 +1,11 @@
+{
+  "LOGIN" : {
+    "email": "E-mail",
+    "email_validation": "Email should be valid",
+    "password": "Password",
+    "empty_password": "You should enter a password",
+    "login": "Login",
+    "password_recover": "Password recover",
+    "register": "Sing up"
+  }
+}

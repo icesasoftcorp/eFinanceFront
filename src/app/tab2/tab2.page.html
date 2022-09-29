@@ -9,9 +9,13 @@
 <ion-content [fullscreen]="true">
   <ion-header collapse="condense">
     <ion-toolbar>
-      <ion-title size="large">Tab 2</ion-title>
+      <ion-title size="large">Ingresos</ion-title>
     </ion-toolbar>
   </ion-header>
 
-  <app-explore-container name="Tab 2 page"></app-explore-container>
+  <ion-list *ngIf="incomes.length > 0">
+    <ion-item *ngFor="let income of incomes">
+      <ion-label>{{income.amount}} - {{income.title}}</ion-label>
+    </ion-item>
+  </ion-list>
 </ion-content>
