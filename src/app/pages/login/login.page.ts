@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
+import { Router } from '@angular/router';
 import { AuthData } from 'src/app/models/auth-data';
 import { LoginService } from 'src/app/services/login.service';
 
@@ -10,9 +11,12 @@ import { LoginService } from 'src/app/services/login.service';
 })
 export class LoginPage implements OnInit {
 
-  constructor(private loginService: LoginService) { }
+  constructor(private loginService: LoginService, private router: Router) { }
 
   ngOnInit() {
+    if (this.loginService.getToken() !== null && this.loginService.getToken() !== '') {
+      this.router.navigate(['app']);
+    }
   }
 
   /**

@@ -13,6 +13,7 @@ import { AppComponent } from './app.component';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { AuthInterceptor } from './interceptors/auth-interceptor';
+import { ErrorInterceptor } from './interceptors/error.interceptor';
 
 export function createTranslateLoader(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
@@ -36,7 +37,8 @@ export function createTranslateLoader(http: HttpClient) {
   ],
   providers: [
     {provide: [RouteReuseStrategy], useClass: IonicRouteStrategy},
-    {provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi:true}
+    {provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi:true},
+    {provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi:true}
   ],
   bootstrap: [AppComponent],
 })

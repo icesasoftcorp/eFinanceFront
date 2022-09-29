@@ -8,28 +8,48 @@ const routes: Routes = [
     component: TabsPage,
     children: [
       {
-        path: 'tab1',
-        loadChildren: () => import('../tab1/tab1.module').then(m => m.Tab1PageModule)
+        path: 'home',
+        loadChildren: () => import('./home/home.module').then(m => m.HomePageModule)
       },
       {
-        path: 'tab2',
-        loadChildren: () => import('../tab2/tab2.module').then(m => m.Tab2PageModule)
+        path: 'movements',
+        loadChildren: () => import('./movements/movements.module').then(m => m.MovementsPageModule)
       },
       {
-        path: 'tab3',
-        loadChildren: () => import('../tab3/tab3.module').then(m => m.Tab3PageModule)
+        path: 'accounts',
+        loadChildren: () => import('./accounts/accounts.module').then(m => m.AccountsPageModule)
+      },
+      {
+        path: 'estimations',
+        loadChildren: () => import('./estimations/estimations.module').then(m => m.EstimationsPageModule)
       },
       {
         path: '',
-        redirectTo: 'app/tab1',
+        redirectTo: 'app/home',
         pathMatch: 'full'
       }
     ]
   },
   {
     path: '',
-    redirectTo: 'app/tab1',
+    redirectTo: 'app/home',
     pathMatch: 'full'
+  },
+  {
+    path: 'home',
+    loadChildren: () => import('./home/home.module').then( m => m.HomePageModule)
+  },
+  {
+    path: 'movements',
+    loadChildren: () => import('./movements/movements.module').then( m => m.MovementsPageModule)
+  },
+  {
+    path: 'accounts',
+    loadChildren: () => import('./accounts/accounts.module').then( m => m.AccountsPageModule)
+  },
+  {
+    path: 'estimations',
+    loadChildren: () => import('./estimations/estimations.module').then( m => m.EstimationsPageModule)
   }
 ];
 

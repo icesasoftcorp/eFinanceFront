@@ -26,7 +26,16 @@ export class LoginService {
    * @param storage Storage service
    * @param router Routing library
    */
-  constructor(private http: HttpClient, private storage: StorageService, private router: Router) { }
+  constructor(
+    private http: HttpClient,
+    private storage: StorageService,
+    private router: Router
+    ) {
+      this.storage.get('token').then(val => {
+        console.log('tok2', val);
+        this.token = val;
+      });
+    }
 
   /**
    * Gets the auth token
@@ -34,11 +43,7 @@ export class LoginService {
    * @returns Auth token
    */
   getToken() {
-    if(this.token != null && this.token !== ''){
-      return this.token;
-    }
-    const token = this.storage.get('token');
-    return token;
+    return this.token;
   }
 
   /**
@@ -95,12 +100,18 @@ export class LoginService {
    * @returns Auth Data
    */
   private getAuthData() {
-    const token = this.storage.get('token');
-    const expirationDate = this.storage.get('expiration');
-    const userId = this.storage.get('userId');
-    if (!token || !expirationDate) {
-      return;
-    }
+    let token: string;
+    this.storage.get('token').then(val => {
+      token = val;
+    });
+    let expirationDate: any;
+    this.storage.get('expiration').then(val => {
+      expirationDate = val;
+    });
+    let userId: any;
+    this.storage.get('userId').then(val => {
+      userId = val;
+    });
     return {
       token,
       expirationDate: new Date (expirationDate),

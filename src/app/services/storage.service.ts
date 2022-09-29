@@ -16,9 +16,7 @@ export class StorageService {
    * Initializes the storage
    */
   async init() {
-    // If using, define drivers here: await this.storage.defineDriver(/*...*/);
     const storage = await this.storage.create();
-    // eslint-disable-next-line no-underscore-dangle
     this._storage = storage;
   }
 
@@ -38,13 +36,9 @@ export class StorageService {
    * @param key
    * @returns stored value
    */
-  public get(key: string) {
-    let val: any;
-    this._storage.get(key).then(value => {
-      val = value;
-    }).catch(err => {
-      console.log(err);
-    });
+  public async get(key: string) {
+    this._storage = await this.storage.create();
+    const val = await this._storage?.get(key);
     return val;
   }
 

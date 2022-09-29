@@ -6,7 +6,6 @@ import { TranslateService } from '@ngx-translate/core';
   providedIn: 'root'
 })
 export class LanguageService {
-  // eslint-disable-next-line @typescript-eslint/naming-convention
   LNG_KEY = 'SELECTED_LANGUAGE';
   selected = '';
   constructor(private translate: TranslateService, private plt: Platform) { }
@@ -30,6 +29,4 @@ export class LanguageService {
     this.translate.use(language);
     this.selected = language;
   }
-
-
 }

@@ -1,5 +1,5 @@
 {
-  "LOGIN" : {
+  "LOGIN": {
     "email": "E-mail",
     "email_validation": "El e-mail ingresado no es válido",
     "password": "Contraseña",
@@ -7,5 +7,14 @@
     "login": "Ingresar",
     "password_recover": "Recuperar contraseña",
     "register": "Registro"
+  },
+  "TABS": {
+    "home": "Inicio",
+    "movements": "Movimientos",
+    "accounts": "Cuentas",
+    "estimations": "Presupuestos"
+  },
+  "MOVEMENTS": {
+    "title": "Movimientos"
   }
 }

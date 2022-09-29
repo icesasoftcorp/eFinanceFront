@@ -7,5 +7,14 @@
     "login": "Login",
     "password_recover": "Password recover",
     "register": "Sing up"
+  },
+  "TABS": {
+    "home": "Home",
+    "movements": "Movements",
+    "accounts": "Accounts",
+    "estimations": "Estimations"
+  },
+  "MOVEMENTS": {
+    "title": "Movements"
   }
 }
