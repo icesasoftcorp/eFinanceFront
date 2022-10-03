@@ -1,0 +1,38 @@
+<form (submit)="onSaveAccount(accountForm)" #accountForm="ngForm">
+  <ion-item>
+    <ion-label position="stacked" color="medium">Name</ion-label>
+    <ion-input name="name" type="name" ngModel #name="ngModel" required></ion-input>
+  </ion-item>
+  <ion-note color="danger" *ngIf="accountForm.submitted && name.invalid">Account must have a valid name</ion-note>
+
+  <ion-item>
+    <ion-label position="stacked" color="medium">Amount</ion-label>
+    <ion-input name="amount" type="number" ngModel #amount="ngModel" required></ion-input>
+  </ion-item>
+  <ion-note color="danger" *ngIf="accountForm.submitted && name.invalid">Account must have a valid amount</ion-note>
+
+  <ion-item>
+    <ion-label position="stacked" color="medium">Color</ion-label>
+    <ion-select interface="popover" name="color" ngModel #color="ngModel" required>
+      <ion-select-option value="red">Red</ion-select-option>
+      <ion-select-option value="orange">Orange</ion-select-option>
+      <ion-select-option value="purple">purple</ion-select-option>
+      <ion-select-option value="blue">Blue</ion-select-option>
+      <ion-select-option value="teal">Teal</ion-select-option>
+      <ion-select-option value="yellow">Yellow</ion-select-option>
+      <ion-select-option value="black">Black</ion-select-option>
+    </ion-select>
+  </ion-item>
+
+  <ion-item *ngIf="accountCategories.length > 0">
+    <ion-label position="stacked" color="medium">Category</ion-label>
+    <ion-select interface="popover" name="category" ngModel #category="ngModel" required>
+      <ng-container *ngFor="let category of accountCategories">
+        <ion-select-option value="{{category._id}}">{{category.title}}</ion-select-option>
+      </ng-container>
+    </ion-select>
+  </ion-item>
+  <ion-note color="danger" *ngIf="accountForm.submitted && name.invalid">Account must have a valid name</ion-note>
+
+  <ion-button type="submit">Guardar</ion-button>
+</form>

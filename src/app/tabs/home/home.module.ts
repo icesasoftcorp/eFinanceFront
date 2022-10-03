@@ -8,6 +8,8 @@ import { HomePageRoutingModule } from './home-routing.module';
 
 import { HomePage } from './home.page';
 import { TranslateModule } from '@ngx-translate/core';
+import { BarHomeComponent } from 'src/app/components/charts/bar-home/bar-home.component';
+import { NgxEchartsModule } from 'ngx-echarts';
 
 @NgModule({
   imports: [
@@ -15,8 +17,14 @@ import { TranslateModule } from '@ngx-translate/core';
     FormsModule,
     IonicModule,
     TranslateModule,
+    NgxEchartsModule.forRoot({
+      echarts: () => import('echarts'),
+    }),
     HomePageRoutingModule
   ],
-  declarations: [HomePage]
+  declarations: [
+    HomePage,
+    BarHomeComponent
+  ]
 })
 export class HomePageModule {}

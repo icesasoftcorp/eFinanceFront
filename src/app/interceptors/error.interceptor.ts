@@ -18,6 +18,7 @@ export class ErrorInterceptor implements HttpInterceptor {
 
   /**
    * Creates and displays the toast
+   *
    * @param msg Toast message
    */
   async presentToast(msg: string) {
@@ -33,6 +34,7 @@ export class ErrorInterceptor implements HttpInterceptor {
 
   /**
    * Intercept http requests
+   *
    * @param request
    * @param next
    * @returns

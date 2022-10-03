@@ -32,7 +32,6 @@ export class LoginService {
     private router: Router
     ) {
       this.storage.get('token').then(val => {
-        console.log('tok2', val);
         this.token = val;
       });
     }

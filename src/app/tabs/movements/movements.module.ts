@@ -8,6 +8,8 @@ import { MovementsPageRoutingModule } from './movements-routing.module';
 
 import { MovementsPage } from './movements.page';
 import { TranslateModule } from '@ngx-translate/core';
+import { SingleLineChartComponent } from 'src/app/components/charts/single-line-chart/single-line-chart.component';
+import { NgxEchartsModule } from 'ngx-echarts';
 
 @NgModule({
   imports: [
@@ -15,8 +17,14 @@ import { TranslateModule } from '@ngx-translate/core';
     FormsModule,
     IonicModule,
     TranslateModule,
+    NgxEchartsModule.forRoot({
+      echarts: () => import('echarts'),
+    }),
     MovementsPageRoutingModule
   ],
-  declarations: [MovementsPage]
+  declarations: [
+    MovementsPage,
+    SingleLineChartComponent
+  ]
 })
 export class MovementsPageModule {}

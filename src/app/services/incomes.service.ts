@@ -4,18 +4,19 @@ import { map } from 'rxjs/operators';
 import { Subject } from 'rxjs';
 import { Incomes } from '../models/incomes';
 import { HttpClient } from '@angular/common/http';
+import { environment } from 'src/environments/environment';
 
 
-const BACKEND_URL = 'http://localhost:3000/api/incomes';
+const BACKEND_URL =  environment.apiUrl + '/incomes';
 
 @Injectable({
   providedIn: 'root'
 })
 export class IncomesService {
   private incomes: Incomes[] = [];
-  private incomessUpdated = new Subject<{incomes: Incomes[] ; incomesCount: number}>();
+  private incomesUpdated = new Subject<{incomes: Incomes[] ; incomesCount: number}>();
 
-  constructor(private httpClient: HttpClient, ) { }
+  constructor(private httpClient: HttpClient) { }
 
   /**
    * Gets incomes
@@ -40,7 +41,7 @@ export class IncomesService {
     )
       .subscribe((transformedIncomesData) => {
         this.incomes = transformedIncomesData.incomes;
-        this.incomessUpdated.next({
+        this.incomesUpdated.next({
           incomes: [...this.incomes],
           incomesCount: transformedIncomesData.maxIncomes
         });
@@ -53,6 +54,6 @@ export class IncomesService {
    * @returns observable
    */
   getPostUpdatedListener() {
-    return this.incomessUpdated.asObservable();
+    return this.incomesUpdated.asObservable();
   }
 }

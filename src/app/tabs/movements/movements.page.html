@@ -7,9 +7,32 @@
 </ion-header>
 
 <ion-content [fullscreen]="true">
+
+  <ion-list-header>
+    <ion-label>{{ 'MOVEMENTS.incomes' | translate }}</ion-label>
+  </ion-list-header>
+  <app-single-line-chart
+    color = "teal" title="Ingresos" amount="$1230.00"
+    [xAxisData]="weekDays"
+    [yAxisData]="savingsData">
+  </app-single-line-chart>
   <ion-list *ngIf="incomes.length > 0">
     <ion-item *ngFor="let income of incomes">
       <ion-label>{{income.amount}} - {{income.title}}</ion-label>
+    </ion-item>
+  </ion-list>
+
+  <ion-list-header>
+    <ion-label>{{ 'MOVEMENTS.expenses' | translate }}</ion-label>
+  </ion-list-header>
+  <app-single-line-chart
+    color = "red" title="Gastos" amount="$690"
+    [xAxisData]="weekDays"
+    [yAxisData]="debtsData">
+  </app-single-line-chart>
+  <ion-list *ngIf="expenses.length > 0">
+    <ion-item *ngFor="let expense of expenses">
+      <ion-label>{{expense.amount}} - {{expense.title}}</ion-label>
     </ion-item>
   </ion-list>
 </ion-content>

@@ -15,6 +15,8 @@
     "estimations": "Presupuestos"
   },
   "MOVEMENTS": {
-    "title": "Movimientos"
+    "title": "Movimientos",
+    "incomes": "Últimos ingresos",
+    "expenses": "Últimos gastos"
   }
 }
