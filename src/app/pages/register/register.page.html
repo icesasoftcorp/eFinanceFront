@@ -1,0 +1,37 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Signup</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <form (submit)="onSignUp(signupForm)" #signupForm="ngForm">
+    <ion-item>
+      <ion-label position="stacked" color="medium">Email</ion-label>
+      <ion-input name= "email" type="email" ngModel #emailInput="ngModel" required email></ion-input>
+      <ion-note color="danger"*ngIf="emailInput.invalid && signupForm.submitted">Please enter a valid email</ion-note>
+    </ion-item>
+    
+    <ion-item>
+      <ion-label position="stacked" color="medium">Name</ion-label>
+      <ion-input matInput type="text" name="name" ngModel #nameInput="ngModel" required></ion-input>
+      <ion-note color="danger" *ngIf="nameInput.invalid && signupForm.submitted">Please enter a valid name</ion-note>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="stacked" color="medium">Lastname</ion-label>
+      <ion-input matInput type="text" name="lastname" ngModel #lastnameInput="ngModel" required></ion-input>
+      <ion-note color="danger" *ngIf="lastnameInput.invalid && signupForm.submitted">Please enter a valid name</ion-note>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="stacked" color="medium">Password</ion-label>
+      <ion-input type="password" name="password" ngModel #passwordInput="ngModel" required></ion-input>
+      <ion-note color="danger" *ngIf="passwordInput.invalid  && signupForm.submitted">Please enter a valid password</ion-note>
+    </ion-item>
+
+    <ion-button expand="block" type="submit">Sign up</ion-button>
+  </form>
+
+</ion-content>

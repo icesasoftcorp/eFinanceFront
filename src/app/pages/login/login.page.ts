@@ -36,4 +36,8 @@ export class LoginPage implements OnInit {
     };
     this.loginService.loginUser(authData);
   }
+
+  navigateSingUpPage() {
+    this.router.navigate(['/register'])
+  }
 }

@@ -1,5 +1,5 @@
 import { Subject } from 'rxjs';
-import { HttpClient } from '@angular/common/http';
+import { HttpBackend, HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { environment } from 'src/environments/environment';
@@ -27,10 +27,12 @@ export class LoginService {
    * @param router Routing library
    */
   constructor(
+    private handler: HttpBackend,
     private http: HttpClient,
     private storage: StorageService,
     private router: Router
     ) {
+      this.http = new HttpClient(handler);
       this.storage.get('token').then(val => {
         this.token = val;
       });
@@ -55,7 +57,7 @@ export class LoginService {
   }
 
   loginUser(authData: AuthData) {
-    this.http.post<{token: string; expiresIn: number}>(BACKEND_URL + '/user/login', authData)
+    this.http.post<{token: string; expiresIn: number}>(BACKEND_URL + '/users/login', authData)
       .subscribe(response => {
         console.log(response);
         if (response.token) {
