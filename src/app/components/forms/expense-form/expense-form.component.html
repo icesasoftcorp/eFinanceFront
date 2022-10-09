@@ -1,0 +1,23 @@
+<form (submit)="onSaveExpense(expenseForm)" #expenseForm="ngForm">
+  <ion-item>
+    <ion-label position="stacked" color="medium">Title</ion-label>
+    <ion-input name="title" type="title" ngModel #title="ngModel" required></ion-input>
+  </ion-item>
+  <ion-note color="danger" *ngIf="expenseForm.submitted && title.invalid">You must type a title</ion-note>
+
+  <ion-item>
+    <ion-label position="stacked" color="medium">Amount</ion-label>
+    <ion-input name="amount" type="number" ngModel #amount="ngModel" required></ion-input>
+  </ion-item>
+  <ion-note color="danger" *ngIf="expenseForm.submitted && name.invalid">Account must have a valid amount</ion-note>
+
+  <ion-item *ngIf="expenseCategories.length > 0">
+    <ion-label position="stacked" color="medium">Category</ion-label>
+    <ion-select interface="popover" name="category" ngModel #category="ngModel" required>
+      <ng-container *ngFor="let expenseCategory of expenseCategories">
+        <ion-select-option value="{{expenseCategory.id}}">{{expenseCategory.title}}</ion-select-option>
+      </ng-container>
+    </ion-select>
+  </ion-item>
+  <ion-button type="submit">Guardar</ion-button>
+</form>

@@ -27,11 +27,10 @@ export class ErrorInterceptor implements HttpInterceptor {
     return next.handle(request).pipe(catchError(
       (error: HttpErrorResponse) => {
         if(error.status === 401) {
-          this.router.navigate(['']);
-        } else {
-          this.toastService.presentToast(error.message, 'danger', 'warning');
-          return throwError(error);
+          this.loginService.logoutUser();
         }
+        this.toastService.presentToast(error.message, 'danger', 'warning');
+        return throwError(error);
       }
     ));
   }

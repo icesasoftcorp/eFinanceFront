@@ -20,6 +20,10 @@ const routes: Routes = [
         loadChildren: () => import('./accounts/accounts.module').then(m => m.AccountsPageModule)
       },
       {
+        path: 'account-detail',
+        loadChildren: () => import('./account-detail/account-detail.module').then(m => m.AccountDetailPageModule)
+      },
+      {
         path: 'estimations',
         loadChildren: () => import('./estimations/estimations.module').then(m => m.EstimationsPageModule)
       },
@@ -50,7 +54,11 @@ const routes: Routes = [
   {
     path: 'estimations',
     loadChildren: () => import('./estimations/estimations.module').then( m => m.EstimationsPageModule)
-  }
+  },
+  {
+    path: 'account-detail',
+    loadChildren: () => import('./account-detail/account-detail.module').then( m => m.AccountDetailPageModule)
+  },
 ];
 
 @NgModule({

@@ -1,0 +1,9 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>{{account.name}}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <app-product-card [name]="account.name" [amount]="account.amount" [color]="account.color" (click)="displayDetailsPage(account)"></app-product-card>
+</ion-content>

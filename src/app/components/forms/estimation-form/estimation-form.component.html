@@ -1,0 +1,24 @@
+<ion-grid *ngIf="rootEstimationCategories.length > 0 && !category" >
+  <ion-row>
+    <ion-col size="6" *ngFor="let estimationCategory of rootEstimationCategories">
+      <app-category-selector [estimationCategory] = "estimationCategory" (click)="setCategory(estimationCategory.id)"></app-category-selector>
+    </ion-col>
+  </ion-row>
+</ion-grid>
+
+<form (submit)="onSaveEstimation(estimationForm)" #estimationForm="ngForm" *ngIf="category">
+  <ion-item>
+    <ion-label position="stacked" color="medium">Description</ion-label>
+    <ion-input name="title" type="name" ngModel #title="ngModel" required></ion-input>
+  </ion-item>
+  <ion-note color="danger" *ngIf="estimationForm.submitted && title.invalid">You must type a title</ion-note>
+
+  <ion-item>
+    <ion-label position="stacked" color="medium">Amount</ion-label>
+    <ion-input name="amount" type="number" ngModel #amount="ngModel" required min=0.01></ion-input>
+  </ion-item>
+  <ion-note color="danger" *ngIf="estimationForm.submitted && amount.invalid">Account must have a valid amount</ion-note>
+
+
+  <ion-button type="submit">Guardar</ion-button>
+</form>

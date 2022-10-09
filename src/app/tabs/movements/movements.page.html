@@ -7,33 +7,76 @@
 </ion-header>
 
 <ion-content [fullscreen]="true">
-
   <ion-list-header>
     <ion-label>{{ 'MOVEMENTS.incomes' | translate }}</ion-label>
+    <ion-fab-button size="small" id="open-modal" color="primary" (click)="openIncomeModal()">
+      <ion-icon name="add"></ion-icon>
+    </ion-fab-button>
   </ion-list-header>
-  <app-single-line-chart
-    color = "teal" title="Ingresos" amount="$1230.00"
-    [xAxisData]="weekDays"
-    [yAxisData]="savingsData">
+  <app-single-line-chart *ngIf="incomeChartData.length > 0"
+    color = "teal" title="Ingresos" [amount]="incomeAmount"
+    [xAxisData]="incomeXAxis"
+    [yAxisData]="incomeChartData">
   </app-single-line-chart>
   <ion-list *ngIf="incomes.length > 0">
-    <ion-item *ngFor="let income of incomes">
-      <ion-label>{{income.amount}} - {{income.title}}</ion-label>
-    </ion-item>
+    <app-movement-item *ngFor="let income of incomes"
+    [title]="income.title"
+    [amount]="income.amount"
+    [date]="income.date"
+    [isExpense]="false">
+    </app-movement-item>
   </ion-list>
 
   <ion-list-header>
     <ion-label>{{ 'MOVEMENTS.expenses' | translate }}</ion-label>
+    <ion-fab-button color="danger" size="small" (click)="openExpenseModal('true')">
+      <ion-icon name="add"></ion-icon>
+    </ion-fab-button>
   </ion-list-header>
-  <app-single-line-chart
-    color = "red" title="Gastos" amount="$690"
+  <app-single-line-chart *ngIf="expenseChartData.length > 0"
+    color = "red" title="Gastos" [amount]="expenseAmount"
     [xAxisData]="weekDays"
-    [yAxisData]="debtsData">
+    [yAxisData]="expenseChartData">
   </app-single-line-chart>
   <ion-list *ngIf="expenses.length > 0">
-    <ion-item *ngFor="let expense of expenses">
-      <ion-label>{{expense.amount}} - {{expense.title}}</ion-label>
-    </ion-item>
+    <app-movement-item *ngFor="let expense of expenses"
+    [title]="expense.title"
+    [amount]="expense.amount"
+    [date]="expense.date"
+    [isExpense]="true">
+    </app-movement-item>
   </ion-list>
+
+  <ion-modal [isOpen]="isIncomeModalOpen" (willDismiss)="closeIncomeModal()" #incomeModal>
+    <ng-template>
+      <ion-content>
+        <ion-toolbar>
+          <ion-title>Income Form</ion-title>
+          <ion-buttons slot="end">
+            <ion-button color="light" (click)="closeIncomeModal()">
+              <ion-icon name="close-outline"></ion-icon>
+            </ion-button>
+          </ion-buttons>
+        </ion-toolbar>
+        <app-income-form></app-income-form>
+      </ion-content>
+    </ng-template>
+  </ion-modal>
+
+  <ion-modal [isOpen]="isExpenseModalOpen" (willDismiss)="closeExpenseModal()" #expenseModal>
+    <ng-template>
+      <ion-content>
+        <ion-toolbar>
+          <ion-title>Expense Form</ion-title>
+          <ion-buttons slot="end">
+            <ion-button color="light" (click)="closeExpenseModal()">
+              <ion-icon name="close-outline"></ion-icon>
+            </ion-button>
+          </ion-buttons>
+        </ion-toolbar>
+        <app-expense-form></app-expense-form>
+      </ion-content>
+    </ng-template>
+  </ion-modal>
 </ion-content>
 

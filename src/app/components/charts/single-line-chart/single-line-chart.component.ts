@@ -10,7 +10,7 @@ export class SingleLineChartComponent implements OnInit {
 
   @Input() color = 'teal';
   @Input() title: string;
-  @Input() amount: string;
+  @Input() amount: number;
   @Input() xAxisData: Array<string>;
   @Input() yAxisData: Array<number>;
 
@@ -20,21 +20,23 @@ export class SingleLineChartComponent implements OnInit {
   }
 
   ngOnInit() {
-    console.log('******** y axis    ', this.yAxisData);
     this.chartOptions = {
       title: {
         text: this.title,
         textStyle: {
-          color: '#FFF',
+          color: '#CCC',
           fontWeight: 700,
           fontSize: 14,
           padding: 0,
         },
-        subtext: this.amount,
+        subtext: this.amount.toLocaleString('en-US', {
+                    style: 'currency',
+                    currency: 'USD'
+                  }),
         subtextStyle: {
           color: '#FFF',
           fontWeight: 700,
-          fontSize: 11
+          fontSize: 14
         },
         bottom: 0
       },

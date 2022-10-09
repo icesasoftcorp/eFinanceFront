@@ -1,4 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
+import { NavigationExtras, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { Account } from 'src/app/models/account';
 import { AccountsService } from 'src/app/services/accounts.service';
@@ -16,7 +17,7 @@ export class AccountsPage implements OnInit, OnDestroy {
 
   private accountSubscription: Subscription;
 
-  constructor(private accountsService: AccountsService) { }
+  constructor(private accountsService: AccountsService, private router: Router) { }
 
   ngOnInit() {
     this.accountsService.getAccounts(this.postPerPage, this.currentPage);
@@ -33,5 +34,16 @@ export class AccountsPage implements OnInit, OnDestroy {
    */
   ngOnDestroy(): void {
     this.accountSubscription.unsubscribe();
+  }
+
+  displayDetailsPage(selectedAccount: Account): void {
+    const navigationExtras: NavigationExtras = {
+      state: {
+        account: selectedAccount
+      }
+    };
+    this.router.navigate(['/app/account-detail'], navigationExtras).catch(reason => {
+      console.log(reason);
+    });
   }
 }

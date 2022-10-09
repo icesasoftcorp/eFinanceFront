@@ -39,7 +39,7 @@ export class ExpensesService {
               title: expense.title,
               description: expense.description,
               amount: expense.amount,
-              date: expense.imadategePath,
+              date: expense.date,
             })),
             maxExpenses: expensesData.maxExpenses
         }))
@@ -53,11 +53,24 @@ export class ExpensesService {
   }
 
   /**
-   * Gets observable for fetching incomes
+   * Gets observable for fetching expenses
    *
    * @returns observable
    */
    getExpenseUpdatedListener() {
     return this.expensesUpdated.asObservable();
+  }
+
+  addExpense(title: string, amount: number, category: string) {
+    const expenseData: any = {
+      title,
+      amount,
+      category
+    };
+    this.httpClient.post<{token: string; expiresIn: number}>(BACKEND_URL, expenseData)
+      .subscribe(response => {
+        console.log(response);
+        window.location.reload();
+      });
   }
 }

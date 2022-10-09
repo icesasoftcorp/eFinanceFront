@@ -1,9 +1,46 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>estimations</ion-title>
+    <ion-title>Estimations</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
 
+  <ion-list *ngIf="estimations.length > 0">
+    <ion-list-header>
+      <ion-label size="large">Montly estimations</ion-label>
+      <ion-fab-button color="primary" size="small" id="open-modal">
+        <ion-icon name="add"></ion-icon>
+      </ion-fab-button>
+    </ion-list-header>
+    <app-movement-item *ngFor="let estimation of estimations"
+    [title]="estimation.title"
+    [amount]="estimation.amount"
+    [date]=""
+    [isExpense]="false">
+    </app-movement-item>
+    <app-movement-item
+    [title]="'TOTAL'"
+    [amount]="estimationTotalAmount"
+    [date]=""
+    [isExpense]="true">
+    </app-movement-item>
+  </ion-list>
+
+  <ion-modal [isOpen]="isModalOpen" #modal trigger="open-modal">
+    <ng-template>
+      <ion-content>
+        <ion-toolbar>
+          <ion-title>New estimation</ion-title>
+          <ion-buttons slot="end">
+            <ion-button color="light" (click)="modal.dismiss()">
+              <ion-icon name="close-outline"></ion-icon>
+            </ion-button>
+          </ion-buttons>
+        </ion-toolbar>
+      <!-- Estimation form -->
+        <app-estimation-form></app-estimation-form>
+      </ion-content>
+    </ng-template>
+  </ion-modal>
 </ion-content>

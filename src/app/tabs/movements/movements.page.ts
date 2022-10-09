@@ -4,7 +4,6 @@ import { Expenses } from 'src/app/models/expenses';
 import { Incomes } from 'src/app/models/incomes';
 import { ExpensesService } from 'src/app/services/expenses.service';
 import { IncomesService } from 'src/app/services/incomes.service';
-import { LoginService } from 'src/app/services/login.service';
 
 @Component({
   selector: 'app-movements',
@@ -14,14 +13,18 @@ import { LoginService } from 'src/app/services/login.service';
 export class MovementsPage implements OnInit, OnDestroy {
   incomes: Incomes[] = [];
   expenses: Expenses[] = [];
-  postPerPage = 9;
+  postPerPage = 20;
   currentPage = 1;
   totalIncomes = 0;
   totalExpenses = 0;
-
-  weekDays = ['L', 'M', 'M', 'J', 'V', 'S', 'D'];
-  savingsData = [200, 932, 901, 934, 1290, 1330, 4];
-  debtsData = [200, 932, 123, 423, 123, 123, 40];
+  isIncomeModalOpen = false;
+  isExpenseModalOpen = false;
+  incomeAmount = 0;
+  expenseAmount = 0;
+  canDismiss = false;
+  incomeChartData: number[] = [];
+  expenseChartData = [];
+  isExpense: boolean;
 
   private incomesSubcription: Subscription;
   private expensesSubcription: Subscription;
@@ -32,14 +35,17 @@ export class MovementsPage implements OnInit, OnDestroy {
   ) { }
 
   /**
-   * On inint
+   * On init
    */
   ngOnInit(): void {
     this.incomesService.getIncomes(this.postPerPage, this.currentPage);
-    this.incomesSubcription = this.incomesService.getPostUpdatedListener()
+    this.incomesSubcription = this.incomesService.getIncomesUpdatedListener()
       .subscribe(
         (incomesData: {incomes: Incomes[]; incomesCount: number}) => {
           this.incomes = incomesData.incomes;
+          this.incomeChartData = incomesData.incomes.map(income => income.amount);
+          // eslint-disable-next-line prefer-arrow/prefer-arrow-functions
+          this.incomeAmount = this.incomeChartData.reduce<number>(function(a, b) {return a + b;}, 0);
           this.totalIncomes = incomesData.incomesCount;
         }
       );
@@ -49,6 +55,9 @@ export class MovementsPage implements OnInit, OnDestroy {
       .subscribe(
         (expensesData: {expenses: Expenses[]; expensesCount: number}) => {
           this.expenses = expensesData.expenses;
+          this.expenseChartData = expensesData.expenses.map(expense => expense.amount);
+          // eslint-disable-next-line prefer-arrow/prefer-arrow-functions
+          this.expenseAmount = this.expenseChartData.reduce<number>(function(a, b) {return a + b}, 0);
           this.totalExpenses = expensesData.expensesCount;
         }
       );
@@ -59,6 +68,22 @@ export class MovementsPage implements OnInit, OnDestroy {
    */
   ngOnDestroy(): void {
     this.incomesSubcription.unsubscribe();
+  }
+
+  openIncomeModal() {
+    this.isIncomeModalOpen = true;
+  }
+
+  closeIncomeModal() {
+    this.isIncomeModalOpen = false;
+  }
+
+  openExpenseModal() {
+    this.isExpenseModalOpen = true;
+  }
+
+  closeExpenseModal() {
+    this.isExpenseModalOpen = false;
   }
 
 }

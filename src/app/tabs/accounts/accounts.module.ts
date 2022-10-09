@@ -7,9 +7,9 @@ import { IonicModule } from '@ionic/angular';
 import { AccountsPageRoutingModule } from './accounts-routing.module';
 
 import { AccountsPage } from './accounts.page';
-import { ProductCardComponent } from 'src/app/components/product-card/product-card.component';
 import { TranslateModule } from '@ngx-translate/core';
 import { AccountFormComponent } from 'src/app/components/forms/account-form/account-form.component';
+import { SharedModule } from 'src/app/modules/shared/shared.module';
 
 @NgModule({
   imports: [
@@ -17,12 +17,12 @@ import { AccountFormComponent } from 'src/app/components/forms/account-form/acco
     FormsModule,
     IonicModule,
     TranslateModule,
+    SharedModule,
     AccountsPageRoutingModule
   ],
   declarations: [
     AccountsPage,
     AccountFormComponent,
-    ProductCardComponent
   ]
 })
 export class AccountsPageModule {}

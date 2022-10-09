@@ -34,7 +34,7 @@ export class IncomesService {
               title: income.title,
               description: income.description,
               amount: income.amount,
-              date: income.imadategePath,
+              date: income.date,
             })),
           maxIncomes: incomesData.maxIncomes
         }))
@@ -53,7 +53,20 @@ export class IncomesService {
    *
    * @returns observable
    */
-  getPostUpdatedListener() {
+  getIncomesUpdatedListener() {
     return this.incomesUpdated.asObservable();
+  }
+
+  addIncome(title: string, amount: number, category: string) {
+    const incomeData: any = {
+      title,
+      amount,
+      category
+    };
+    this.httpClient.post<{token: string; expiresIn: number}>(BACKEND_URL, incomeData)
+      .subscribe(response => {
+        console.log(response);
+        window.location.reload();
+      });
   }
 }

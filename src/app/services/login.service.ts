@@ -72,6 +72,11 @@ export class LoginService {
       });
   }
 
+  logoutUser() {
+    this.removeAuthData();
+    this.router.navigate(['/']);
+  }
+
   /**
    * Stores the auth data in sqlite
    *
@@ -83,6 +88,11 @@ export class LoginService {
     this.storage.set('token', token);
     this.token = token;
     this.storage.set('expiration', expiration.toISOString());
+  }
+
+  private removeAuthData() {
+    this.storage.remove('token');
+    this.storage.remove('expiration');
   }
   /**
    * Sets the timer when session expires
