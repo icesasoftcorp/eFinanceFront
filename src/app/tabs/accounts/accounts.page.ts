@@ -12,19 +12,22 @@ import { AccountsService } from 'src/app/services/accounts.service';
 export class AccountsPage implements OnInit, OnDestroy {
   accounts: Account[] = [];
   totalAccounts = 0;
-  postPerPage = 20;
+  postPerPage = 100;
   currentPage = 1;
+  isLoading: boolean;
 
   private accountSubscription: Subscription;
 
   constructor(private accountsService: AccountsService, private router: Router) { }
 
   ngOnInit() {
+    this.isLoading = true;
     this.accountsService.getAccounts(this.postPerPage, this.currentPage);
     this.accountSubscription = this.accountsService.getAccountsUpdatedListener().subscribe(
       (accountsData: {accounts: Account[]; maxAccounts: number}) => {
         this.accounts = accountsData.accounts;
         this.totalAccounts = accountsData.maxAccounts;
+        this.isLoading = false;
       }
     );
   }

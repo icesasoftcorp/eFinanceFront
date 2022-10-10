@@ -16,6 +16,8 @@ export class EstimationsPage implements OnInit {
   estimationAmountArray = [];
   estimationTotalAmount = 0;
   estimationCount = 0;
+  isEstimationModalOpen = false;
+  isLoading: boolean;
   private estimationsSubcription: Subscription;
 
   constructor(
@@ -23,6 +25,7 @@ export class EstimationsPage implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    this.isLoading = true;
     this.estimationsService.getEstimations(this.itemsPerPage, this.currentPage);
     this.estimationsSubcription = this.estimationsService.getEstimationsUpdatedListener()
     .subscribe(
@@ -32,7 +35,12 @@ export class EstimationsPage implements OnInit {
         // eslint-disable-next-line prefer-arrow/prefer-arrow-functions
         this.estimationTotalAmount = this.estimationAmountArray.reduce<number>(function(a, b) {return a + b;},0);
         this.estimationCount = estimationsData.maxEstimations;
+        this.isLoading = false;
       }
     );
+  }
+
+  toogleEstimationModal() {
+    this.isEstimationModalOpen = !this.isEstimationModalOpen;
   }
 }

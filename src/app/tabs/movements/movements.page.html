@@ -7,9 +7,10 @@
 </ion-header>
 
 <ion-content [fullscreen]="true">
+  <app-full-screen-spinner [isLoading]="isLoading"></app-full-screen-spinner>
   <ion-list-header>
     <ion-label>{{ 'MOVEMENTS.incomes' | translate }}</ion-label>
-    <ion-fab-button size="small" id="open-modal" color="primary" (click)="openIncomeModal()">
+    <ion-fab-button size="small" color="primary" (click)="openIncomeModal()">
       <ion-icon name="add"></ion-icon>
     </ion-fab-button>
   </ion-list-header>

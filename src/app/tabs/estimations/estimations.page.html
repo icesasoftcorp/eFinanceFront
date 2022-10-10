@@ -1,3 +1,5 @@
+<app-full-screen-spinner [isLoading]="isLoading"></app-full-screen-spinner>
+
 <ion-header>
   <ion-toolbar>
     <ion-title>Estimations</ion-title>
@@ -9,7 +11,7 @@
   <ion-list *ngIf="estimations.length > 0">
     <ion-list-header>
       <ion-label size="large">Montly estimations</ion-label>
-      <ion-fab-button color="primary" size="small" id="open-modal">
+      <ion-fab-button color="primary" size="small" (click) = "toogleEstimationModal()">
         <ion-icon name="add"></ion-icon>
       </ion-fab-button>
     </ion-list-header>
@@ -27,13 +29,13 @@
     </app-movement-item>
   </ion-list>
 
-  <ion-modal [isOpen]="isModalOpen" #modal trigger="open-modal">
+  <ion-modal [isOpen]="isEstimationModalOpen" #modal>
     <ng-template>
       <ion-content>
         <ion-toolbar>
           <ion-title>New estimation</ion-title>
           <ion-buttons slot="end">
-            <ion-button color="light" (click)="modal.dismiss()">
+            <ion-button color="light" (click)="toogleEstimationModal()">
               <ion-icon name="close-outline"></ion-icon>
             </ion-button>
           </ion-buttons>

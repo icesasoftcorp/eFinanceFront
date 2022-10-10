@@ -14,7 +14,7 @@ import { ToastService } from '../services/toast.service';
 @Injectable()
 export class ErrorInterceptor implements HttpInterceptor {
 
-  constructor(private toastService: ToastService, private router: Router, private loginService: LoginService) {}
+  constructor(private toastService: ToastService, private loginService: LoginService) {}
 
   /**
    * Intercept http requests
@@ -24,12 +24,14 @@ export class ErrorInterceptor implements HttpInterceptor {
    * @returns
    */
   intercept(request: HttpRequest<any>, next: HttpHandler) {
+    console.log('entradadas');
     return next.handle(request).pipe(catchError(
       (error: HttpErrorResponse) => {
+        console.log(error, 'entra');
+        this.toastService.presentToast(error.error.message ? error.error.message: 'unknown error', 'danger', 'warning');
         if(error.status === 401) {
           this.loginService.logoutUser();
         }
-        this.toastService.presentToast(error.message, 'danger', 'warning');
         return throwError(error);
       }
     ));

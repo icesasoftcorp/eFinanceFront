@@ -9,6 +9,7 @@ import { ReportsService } from 'src/app/services/reports.service';
 })
 export class HomePage implements OnInit {
 
+  isLoading: boolean;
   totalIncomes = 0;
   totalExpenses = 0;
   totalEstimated = 0;
@@ -19,6 +20,7 @@ export class HomePage implements OnInit {
   constructor(private reportService: ReportsService) { }
 
   ngOnInit() {
+    this.isLoading = true;
     this.reportService.getTotalIncomes();
     this.totalIncomesSubcription = this.reportService.getTotalIncomesUpdatedListener().subscribe(
       (totalIncomesData) => {
@@ -36,6 +38,7 @@ export class HomePage implements OnInit {
     this.totalEstimatedSubcription = this.reportService.getTotalEstimatedUpdatedListener().subscribe(
       (totalEstimatedData) => {
         this.totalEstimated = totalEstimatedData.totalEstimated;
+        this.isLoading = false;
       }
     );
   }

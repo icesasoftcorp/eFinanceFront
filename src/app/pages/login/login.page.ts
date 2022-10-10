@@ -10,6 +10,7 @@ import { LoginService } from 'src/app/services/login.service';
   styleUrls: ['./login.page.scss'],
 })
 export class LoginPage implements OnInit {
+  isLoading = false;
 
   constructor(private loginService: LoginService, private router: Router) { }
 
@@ -30,6 +31,7 @@ export class LoginPage implements OnInit {
     if (ngForm.invalid) {
       return;
     }
+    this.isLoading = true;
     const authData: AuthData = {
       email: ngForm.value.email,
       password: ngForm.value.password,
@@ -38,6 +40,6 @@ export class LoginPage implements OnInit {
   }
 
   navigateSingUpPage() {
-    this.router.navigate(['/register'])
+    this.router.navigate(['/register']);
   }
 }

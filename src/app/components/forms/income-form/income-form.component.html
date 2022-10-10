@@ -9,7 +9,7 @@
     <ion-label position="stacked" color="medium">Amount</ion-label>
     <ion-input name="amount" type="number" ngModel #amount="ngModel" required></ion-input>
   </ion-item>
-  <ion-note color="danger" *ngIf="incomeForm.submitted && name.invalid">Account must have a valid amount</ion-note>
+  <ion-note color="danger" *ngIf="incomeForm.submitted && amount.invalid">Account must have a valid amount</ion-note>
 
   <ion-item *ngIf="incomeCategories.length > 0">
     <ion-label position="stacked" color="medium">Category</ion-label>

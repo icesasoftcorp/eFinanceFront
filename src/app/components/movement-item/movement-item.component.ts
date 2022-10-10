@@ -1,5 +1,4 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { TranslateService } from '@ngx-translate/core';
 import { LanguageService } from 'src/app/services/language.service';
 
 @Component({
@@ -9,7 +8,7 @@ import { LanguageService } from 'src/app/services/language.service';
 })
 export class MovementItemComponent implements OnInit {
   @Input() title: string;
-  @Input() date: string;
+  @Input() date: Date;
   @Input() category: string;
   @Input() amount: number;
   @Input() isExpense = false;

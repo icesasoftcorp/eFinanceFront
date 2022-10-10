@@ -10,6 +10,7 @@ import { HomePage } from './home.page';
 import { TranslateModule } from '@ngx-translate/core';
 import { BarHomeComponent } from 'src/app/components/charts/bar-home/bar-home.component';
 import { NgxEchartsModule } from 'ngx-echarts';
+import { SharedModule } from 'src/app/modules/shared/shared.module';
 
 @NgModule({
   imports: [
@@ -17,6 +18,7 @@ import { NgxEchartsModule } from 'ngx-echarts';
     FormsModule,
     IonicModule,
     TranslateModule,
+    SharedModule,
     NgxEchartsModule.forRoot({
       echarts: () => import('echarts'),
     }),

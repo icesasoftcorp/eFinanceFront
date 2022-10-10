@@ -13,6 +13,7 @@ import { IncomesService } from 'src/app/services/incomes.service';
 export class MovementsPage implements OnInit, OnDestroy {
   incomes: Incomes[] = [];
   expenses: Expenses[] = [];
+  weekDays = [];
   postPerPage = 20;
   currentPage = 1;
   totalIncomes = 0;
@@ -25,6 +26,7 @@ export class MovementsPage implements OnInit, OnDestroy {
   incomeChartData: number[] = [];
   expenseChartData = [];
   isExpense: boolean;
+  isLoading: boolean;
 
   private incomesSubcription: Subscription;
   private expensesSubcription: Subscription;
@@ -38,6 +40,7 @@ export class MovementsPage implements OnInit, OnDestroy {
    * On init
    */
   ngOnInit(): void {
+    this.isLoading = true;
     this.incomesService.getIncomes(this.postPerPage, this.currentPage);
     this.incomesSubcription = this.incomesService.getIncomesUpdatedListener()
       .subscribe(
@@ -59,6 +62,7 @@ export class MovementsPage implements OnInit, OnDestroy {
           // eslint-disable-next-line prefer-arrow/prefer-arrow-functions
           this.expenseAmount = this.expenseChartData.reduce<number>(function(a, b) {return a + b}, 0);
           this.totalExpenses = expensesData.expensesCount;
+          this.isLoading = false;
         }
       );
   }
@@ -68,6 +72,7 @@ export class MovementsPage implements OnInit, OnDestroy {
    */
   ngOnDestroy(): void {
     this.incomesSubcription.unsubscribe();
+    this.expensesSubcription.unsubscribe();
   }
 
   openIncomeModal() {
