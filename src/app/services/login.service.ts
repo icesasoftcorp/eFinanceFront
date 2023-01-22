@@ -59,7 +59,6 @@ export class LoginService {
   loginUser(authData: AuthData) {
     this.http.post<{token: string; expiresIn: number}>(BACKEND_URL + '/users/login', authData)
       .subscribe(response => {
-        console.log(response);
         if (response.token) {
           this.isAuthenticated = true;
           this.setAuthTimer(response.expiresIn);
