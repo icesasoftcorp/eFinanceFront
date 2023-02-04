@@ -1,17 +1,10 @@
 <app-full-screen-spinner [isLoading]="isLoading"></app-full-screen-spinner>
-
-<ion-header>
-  <ion-toolbar>
-    <ion-title>Estimations</ion-title>
-  </ion-toolbar>
-</ion-header>
-
 <ion-content>
 
   <ion-list *ngIf="estimations.length > 0">
     <ion-list-header>
       <ion-label size="large">Montly estimations</ion-label>
-      <ion-fab-button color="primary" size="small" (click) = "toogleEstimationModal()">
+      <ion-fab-button color="primary" size="small" (click) = "deleteItem(estimation._id)">
         <ion-icon name="add"></ion-icon>
       </ion-fab-button>
     </ion-list-header>
