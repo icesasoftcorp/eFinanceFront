@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { LanguageService } from './services/language.service';
+// import {Title} from "@angular/platform-browser";
 
 @Component({
   selector: 'app-root',
@@ -9,5 +10,6 @@ import { LanguageService } from './services/language.service';
 export class AppComponent {
   constructor(private languageService: LanguageService) {
     this.languageService.setInitialAppLanguage();
+    // this.titleService.setTitle("||eFinan");
   }
 }
