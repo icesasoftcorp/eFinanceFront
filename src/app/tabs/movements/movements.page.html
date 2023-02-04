@@ -1,12 +1,19 @@
-<ion-header [translucent]="true">
+<ion-header>
   <ion-toolbar>
-    <ion-title>
-      {{ 'MOVEMENTS.title' | translate }}
-    </ion-title>
+    <ion-title>{{ 'MOVEMENTS.title' | translate }}</ion-title>
+    <ion-progress-bar [buffer]="buffer" [value]="progress"></ion-progress-bar>
+    <ion-button slot="primary">
+      <ion-icon slot="icon-only" name="log-out-outline"></ion-icon>
+    </ion-button>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large">{{ 'MOVEMENTS.incomes' | translate }}</ion-title>
+    </ion-toolbar>
+  </ion-header>
   <app-full-screen-spinner [isLoading]="isLoading"></app-full-screen-spinner>
   <ion-list-header>
     <ion-label>{{ 'MOVEMENTS.incomes' | translate }}</ion-label>

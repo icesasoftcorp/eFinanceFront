@@ -7,7 +7,7 @@
         <form (submit)="onLogin(loginForm)" #loginForm="ngForm">
           <ion-item>
             <ion-label position="stacked" color="medium">{{ 'LOGIN.email' | translate }}</ion-label>
-            <ion-input name="email" type="email" ngModel #emailInput="ngModel" required email></ion-input>
+            <ion-input name="email" type="email" ngModel #emailInput="ngModel" required placeholder="example@example.com" email></ion-input>
           </ion-item>
           <ion-note color="danger" *ngIf="loginForm.submitted && emailInput.invalid">{{ 'LOGIN.email_validation' | translate }}</ion-note>
 
