@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
+import { LayoutComponent } from './layout/layout.component';
 
 const routes: Routes = [
   {
@@ -8,7 +9,8 @@ const routes: Routes = [
   },
   {
     path: 'app',
-    loadChildren: () => import('./tabs/tabs.module').then(m => m.TabsPageModule)
+    component: LayoutComponent,
+    loadChildren: () => import('./pages/pages.module').then(m => m.PagesModule)
   },
   {
     path: 'register',

@@ -57,7 +57,7 @@ export class LoginService {
   }
 
   loginUser(authData: AuthData) {
-    this.http.post<{token: string; expiresIn: number}>(BACKEND_URL + '/users/login', authData)
+    this.http.post<{token: string; expiresIn: number; userId: string}>(BACKEND_URL + '/users/login', authData)
       .subscribe(response => {
         if (response.token) {
           this.isAuthenticated = true;
@@ -65,6 +65,8 @@ export class LoginService {
           const now = new Date();
           const expiresInDuration = response.expiresIn;
           const expirationDate = new Date (now.getTime() +  expiresInDuration * 1000);
+          localStorage.setItem('currentUser', JSON.stringify({userId:response.userId}));
+          localStorage.setItem('token', response.token);
           this.setAuthData(response.token, expirationDate);
           this.router.navigate(['app']);
         }

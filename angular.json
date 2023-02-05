@@ -30,7 +30,12 @@
                 "output": "./svg"
               }
             ],
-            "styles": ["src/theme/variables.scss", "src/global.scss"],
+            "styles": [
+              "src/theme/variables.scss", 
+              "src/global.scss",
+              "src/assets/scss/config/default/bootstrap.scss",
+              "src/assets/scss/config/default/app.scss"
+            ],
             "scripts": [],
             "aot": false,
             "vendorChunk": true,

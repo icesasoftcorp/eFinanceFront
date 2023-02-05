@@ -7,10 +7,10 @@ const routes: Routes = [
     path: 'app',
     component: TabsPage,
     children: [
-      {
-        path: 'home',
-        loadChildren: () => import('./home/home.module').then(m => m.HomePageModule)
-      },
+      // {
+      //   path: 'home',
+      //   loadChildren: () => import('../pages/home/home.module.tstd').then(m => m.HomePageModule)
+      // },
       {
         path: 'movements',
         loadChildren: () => import('./movements/movements.module').then(m => m.MovementsPageModule)
@@ -41,7 +41,7 @@ const routes: Routes = [
   },
   {
     path: 'home',
-    loadChildren: () => import('./home/home.module').then( m => m.HomePageModule)
+    loadChildren: () => import('../pages/home/home.module.tstd').then( m => m.HomePageModule)
   },
   {
     path: 'movements',

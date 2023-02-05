@@ -28,7 +28,7 @@ export class ErrorInterceptor implements HttpInterceptor {
     return next.handle(request).pipe(catchError(
       (error: HttpErrorResponse) => {
         console.log(error, 'entra');
-        this.toastService.presentToast(error.error.message ? error.error.message: 'unknown error', 'danger', 'warning');
+        // this.toastService.presentToast(error.error.message ? error.error.message: 'unknown error', 'danger', 'warning');
         if(error.status === 401) {
           this.loginService.logoutUser();
         }

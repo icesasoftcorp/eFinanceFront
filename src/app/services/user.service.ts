@@ -23,7 +23,7 @@ export class UserService {
     };
     this.httpClient.post(BACKEND_URL + "/signup", user).subscribe(response => {
       this.router.navigate(['/login']);
-      this.toastService.presentToast('User Succesfully created' , 'success', 'person')
+      // this.toastService.presentToast('User Succesfully created' , 'success', 'person')
     }, error => {
       console.error (error);
     });

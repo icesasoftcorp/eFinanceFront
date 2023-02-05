@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-import { Platform } from '@ionic/angular';
 import { TranslateService } from '@ngx-translate/core';
 
 @Injectable({
@@ -9,7 +8,7 @@ export class LanguageService {
   // eslint-disable-next-line @typescript-eslint/naming-convention
   LNG_KEY = 'SELECTED_LANGUAGE';
   selected = '';
-  constructor(private translate: TranslateService, private plt: Platform) { }
+  constructor(private translate: TranslateService) { }
 
   /**
    * Gets browser languages and selects the initial language
